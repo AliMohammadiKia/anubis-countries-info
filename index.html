@@ -30,7 +30,28 @@
     />
   </head>
   <body>
-    <header></header>
+    <header class="shadow-lg">
+      <div class="container mx-auto py-1.5">
+        <div class="navbar bg-base-100">
+          <!-- text logo -->
+          <div class="flex-1">
+            <a
+              href="#"
+              class="text-md font-semibold sm:text-xl sm:font-bold cursor-pointer"
+              >Where in the world?</a
+            >
+          </div>
+          <!-- dark mode btn -->
+          <div class="flex-none">
+            <button class="btn btn-sm btn-ghost" onclick="changeMode(event)">
+              <i class="fa-solid fa-moon hidden" id="dark-icon"></i>
+              <i class="fa-regular fa-moon" id="light-icon"></i>
+              <span id="text-dark-icon">Dark Mode</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <main></main>
 
