@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REST Countries API</title>
+    <!-- link to daisyui -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- link to tailwindcss -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     start input and select Box 
+     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+    <div class="container flex flex-col md:flex-row justify-between p-12">
+      <div class="mb-4 md:mb-0">
+        <label
+          class="input flex items-center w-full md:w-[400px] gap-5 shadow bg-neutral-100 max-w-[400px]"
+        >
+          <a href="">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 14 14"
+              fill="currentColor"
+              class="w-4 h-4 opacity-70"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+          <input
+            type="text"
+            class="container ring-0"
+            placeholder="Search for a country"
+          />
+        </label>
+      </div>
+      <div>
+        <select
+          class="select select-ghost w-full md:w-[200px] shadow bg-neutral-100"
+          style="font-family: 'Nunito Sans', sans-serif"
+        >
+          <option disabled selected>Filter by Region</option>
+          <option>Africa</option>
+          <option>America</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>Oceania</option>
+        </select>
+      </div>
+    </div>
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    End input and select Box 
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+    <!-- ----------- -->
+  </body>
+</html>
