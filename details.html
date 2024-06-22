@@ -30,17 +30,88 @@
     />
   </head>
   <body>
-    <header></header>
+    <header class="shadow-lg">
+      <div class="container mx-auto py-1.5">
+        <div class="navbar bg-base-100">
+          <!-- text logo -->
+          <div class="flex-1">
+            <a
+              href="#"
+              class="text-md font-semibold sm:text-xl sm:font-bold cursor-pointer"
+              >Where in the world?</a
+            >
+          </div>
+          <!-- dark mode btn -->
+          <div class="flex-none">
+            <button class="btn btn-sm btn-ghost" onclick="changeMode(event)">
+              <i class="fa-solid fa-moon hidden" id="dark-icon"></i>
+              <i class="fa-regular fa-moon" id="light-icon"></i>
+              <span id="text-dark-icon">Dark Mode</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <main>
+    <main class="container mx-auto px-4 py-10">
       <!-- back button -->
       <section>
         <button
-          class="btn xl:w-48 xl:h-16 lg:w-40 md:w-36 sm:w-32 w-24 h-12 xl:mt-16 xl:mx-32 lg:mt-16 lg:mx-24 md:mt-12 md:mx-24 sm:mt-12 sm:mx-20 mt-12 mx-32 shadow-lg shadow-[2px_2px_2px_rgba(0,0,0,0)] hover:scale-105 text-md"
+          class="btn btn-sm md:btn-md px-[25px] md:px-[50px] shadow-[0_0_10px_5px_rgba(0,0,0,0.125)] hover:scale-105"
         >
           <i class="fa-solid fa-arrow-left-long"></i>
           Back
         </button>
+      </section>
+
+      <!-- details section -->
+      <section
+        class="flex flex-col justify-between md:flex-row mx-auto py-10 min-h-fit"
+      >
+        <!-- <div class="flag w-2/4 p-4 flex items-center"> -->
+        <img
+          class="flag w-full md:w-2/4 lg:w-2/5 p-7 md:p-4"
+          src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg"
+          alt=""
+        />
+        <!-- </div> -->
+        <section
+          class="text md:w-2/4 lg:w-2/4 flex justify-center flex-col p-7"
+        >
+          <h1 class="text-3xl font-bold">Brazil</h1>
+          <div class="my-10 grid md:grid-cols-2 gap-1">
+            <div>
+              <p class="py-1"><b>Native Name: </b>...</p>
+              <p></p>
+              <p class="py-1"><b>Population: </b>....</p>
+              <p class="py-1"><b>Region:</b></p>
+              <p class="py-1"><b>Sub Region:</b></p>
+              <p class="py-1"><b>Capital:</b> Brasília</p>
+            </div>
+            <div>
+              <p class="py-1"><b>Top Level Domain:</b> ++++++++</p>
+              <p class="py-1"><b>Currencies:</b></p>
+              <p class="py-1"><b>Languages:</b></p>
+            </div>
+          </div>
+          <div class="flex flex-wrap flex-row gap-2">
+            <label for="" class=""><b>Border Countries:</b> </label>
+            <div>
+              <button class="btn btn-xs lg:btn-sm shadow-xl px-2">
+                France
+              </button>
+              <button class="btn btn-xs lg:btn-sm shadow-xl px-2">
+                Belgium
+              </button>
+              <button class="btn btn-xs lg:btn-sm shadow-xl px-2">
+                Netherlands
+              </button>
+              <button class="btn btn-xs lg:btn-sm shadow-xl px-2">
+                Netherlands
+              </button>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
 
