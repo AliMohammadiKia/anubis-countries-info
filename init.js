@@ -44,10 +44,11 @@ function header() {
 
 function footer() {
   const Footer = document.createElement("footer");
-  Footer.className = "py-2 shadow-lg border-t-2 border-t-neutral-400";
+  Footer.className =
+    "py-2 shadow-lg border-t-2  bg-base-100 fixed inset-x-0 bottom-0";
   document.body.append(Footer);
   const container = document.createElement("div");
-  container.className = "container mx-auto px-2";
+  container.className = "container mx-auto px-3";
   Footer.append(container);
   const div1 = document.createElement("div");
   div1.className =
