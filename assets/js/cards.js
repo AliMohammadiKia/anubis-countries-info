@@ -44,9 +44,9 @@ const createCards = (data) => {
   h2Ele.innerText = data.name;
 
   const containerDetail = document.createElement("div");
-  containerDetail.innerHTML = `<p><b>Population</b>${data.population}</p>
-                <p><b>Region</b>${data.region}</p>
-                <p><b>Capital</b>${data.capital}</p>`;
+  containerDetail.innerHTML = `<p><b>Population:</b> ${data.population}</p>
+                <p><b>Region:</b> ${data.region}</p>
+                <p><b>Capital:</b> ${data.capital}</p>`;
 
   cardBody.append(h2Ele, containerDetail);
   divEle.append(figureEle, cardBody);
