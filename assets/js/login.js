@@ -27,7 +27,7 @@ function header() {
   aElem.href = "./index.html";
   aElem.className =
     "text-md font-semibold sm:text-xl sm:font-bold cursor-pointer";
-  aElem.textContent = "Login";
+  aElem.textContent = "Where in the world?";
   thirdDiv.appendChild(aElem);
   const fourthDiv = document.createElement("div");
   fourthDiv.className = "flex-none";
@@ -48,9 +48,27 @@ function header() {
   span.id = "text-dark-icon";
   span.textContent = "Dark Mode";
   button.append(span);
+   const buttonAElem = document.createElement("a");
+   buttonAElem.href="http://127.0.0.1:5500/signUp.html"
+  const userIconButton = document.createElement("button");
+  userIconButton.className = "btn btn-ghost btn-circle ml-2";
+  fourthDiv.append(buttonAElem);
+  const indicatorDiv = document.createElement("div");
+  indicatorDiv.className = "indicator";
+  userIconButton.append(indicatorDiv);
+  const firstI = document.createElement("i");
+  firstI.className = "fa-solid fa-user text-lg hidden";
+  firstI.id = "dark-user";
+  indicatorDiv.append(firstI);
+  const secondI = document.createElement("i");
+  secondI.className = "fa-regular fa-user text-lg";
+  secondI.id = "light-user";
+  indicatorDiv.append(secondI);
+  buttonAElem.append(userIconButton)
   root.append(Header);
   root.className = "px-2";
 }
+
 
 /**
  *
