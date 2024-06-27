@@ -38,6 +38,26 @@ function header() {
   span.id = "text-dark-icon";
   span.textContent = "Dark Mode";
   button.append(span);
+  const userIconButton = document.createElement("button");
+  userIconButton.className = "btn btn-ghost btn-circle ml-2";
+  fourthDiv.append(userIconButton);
+  const indicatorDiv = document.createElement("div");
+  indicatorDiv.className = "indicator";
+  userIconButton.append(indicatorDiv);
+  const firstI = document.createElement("i");
+  firstI.className = "fa-solid fa-user text-lg hidden";
+  firstI.id = "dark-user";
+  indicatorDiv.append(firstI);
+  const firstAElem = document.createElement("a");
+  firstAElem.href = "#";
+  firstI.append(firstAElem);
+  const secondI = document.createElement("i");
+  secondI.className = "fa-regular fa-user text-lg";
+  secondI.id = "light-user";
+  indicatorDiv.append(secondI);
+  const secondAElem = document.createElement("a");
+  secondAElem.href = "#";
+  secondI.append(secondAElem);
   root.append(Header);
   root.className = "px-2";
 }
