@@ -1,5 +1,4 @@
-const main = document.querySelector("main");
-
+const mainEle = document.querySelector("main");
 const sectionEle = document.createElement("section");
 
 const divGrid = document.createElement("div");
@@ -7,7 +6,7 @@ divGrid.className =
   "grid gap-14 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 px-16";
 
 sectionEle.append(divGrid);
-main.append(sectionEle);
+mainEle.append(sectionEle);
 
 const setData = async () => {
   try {
