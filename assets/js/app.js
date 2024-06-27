@@ -39,9 +39,11 @@ function header() {
   span.id = "text-dark-icon";
   span.textContent = "Dark Mode";
   button.append(span);
+   const buttonAElem = document.createElement("a");
+   buttonAElem.href="http://127.0.0.1:5500/login.html"
   const userIconButton = document.createElement("button");
   userIconButton.className = "btn btn-ghost btn-circle ml-2";
-  fourthDiv.append(userIconButton);
+  fourthDiv.append(buttonAElem);
   const indicatorDiv = document.createElement("div");
   indicatorDiv.className = "indicator";
   userIconButton.append(indicatorDiv);
@@ -49,16 +51,11 @@ function header() {
   firstI.className = "fa-solid fa-user text-lg hidden";
   firstI.id = "dark-user";
   indicatorDiv.append(firstI);
-  const firstAElem = document.createElement("a");
-  firstAElem.href = "#";
-  firstI.append(firstAElem);
   const secondI = document.createElement("i");
   secondI.className = "fa-regular fa-user text-lg";
   secondI.id = "light-user";
   indicatorDiv.append(secondI);
-  const secondAElem = document.createElement("a");
-  secondAElem.href = "#";
-  secondI.append(secondAElem);
+  buttonAElem.append(userIconButton)
   root.append(Header);
   root.className = "px-2";
 }
@@ -109,6 +106,8 @@ initialize();
 // variables
 const darkIcon = document.querySelector("#dark-icon");
 const lightIcon = document.querySelector("#light-icon");
+const darkUser=document.querySelector("#dark-user");
+const lightUser=document.querySelector("#light-user");
 
 const isDefaultDarkMode = window.matchMedia(
   "(prefers-color-scheme: dark)"
@@ -121,10 +120,16 @@ if (getTheme === "dark") {
   document.documentElement.setAttribute("data-theme", "dark");
   darkIcon.style.display = "block";
   lightIcon.style.display = "none";
+  darkUser.style.display = "block";
+  lightUser.style.display = "none";
+
+
 } else {
   document.documentElement.setAttribute("data-theme", "light");
   darkIcon.style.display = "none";
   lightIcon.style.display = "block";
+  darkUser.style.display = "none";
+  lightUser.style.display = "block";
 }
 
 // handle change dark | light mode
@@ -135,10 +140,14 @@ function changeMode(event) {
     document.documentElement.setAttribute("data-theme", "dark");
     darkIcon.style.display = "block";
     lightIcon.style.display = "none";
+    darkUser.style.display = "block";
+   lightUser.style.display = "none";
   } else if (theme === "dark") {
     localStorage.setItem("theme", "light");
     document.documentElement.setAttribute("data-theme", "light");
     darkIcon.style.display = "none";
     lightIcon.style.display = "block";
+    darkUser.style.display = "none";
+   lightUser.style.display = "block";
   }
 }
