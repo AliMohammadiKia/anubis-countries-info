@@ -48,8 +48,8 @@ function header() {
   span.id = "text-dark-icon";
   span.textContent = "Dark Mode";
   button.append(span);
-   const buttonAElem = document.createElement("a");
-   buttonAElem.href="http://127.0.0.1:5500/signUp.html"
+  const buttonAElem = document.createElement("a");
+  buttonAElem.href = "http://127.0.0.1:5500/signUp.html";
   const userIconButton = document.createElement("button");
   userIconButton.className = "btn btn-ghost btn-circle ml-2";
   fourthDiv.append(buttonAElem);
@@ -64,11 +64,10 @@ function header() {
   secondI.className = "fa-regular fa-user text-lg";
   secondI.id = "light-user";
   indicatorDiv.append(secondI);
-  buttonAElem.append(userIconButton)
+  buttonAElem.append(userIconButton);
   root.append(Header);
   root.className = "px-2";
 }
-
 
 /**
  *
@@ -84,20 +83,22 @@ function login() {
   const logInSec = document.createElement("section");
   //!!!!!!!!!!!!!!!!!!!!!Login!!!!!!!!!!!!
   const loginForm = document.createElement("form");
+  loginForm.setAttribute("id", "form");
   const h2Login = document.createElement("h2");
-  const spanLoginFirst=document.createElement("span");
-  const spanLoginSecond=document.createElement("span");
+  const spanLoginFirst = document.createElement("span");
+  const spanLoginSecond = document.createElement("span");
   //email
   const emailLogin = document.createElement("input");
+  emailLogin.setAttribute("id", "email");
   emailLogin.setAttribute("type", "email");
   emailLogin.setAttribute("placeholder", "Enter your email");
+
   //pass
   const divPassLogin = document.createElement("div");
   const passLogin = document.createElement("input");
   passLogin.setAttribute("type", "password");
   passLogin.setAttribute("id", "passsword");
   passLogin.setAttribute("placeholder", "Confirm a password");
-
   //icon
   const iconEyeLogin = document.createElement("i");
   iconEyeLogin.setAttribute("id", "icon-passs");
@@ -117,13 +118,14 @@ function login() {
   //button
   const loginButton = document.createElement("button");
   loginButton.setAttribute("type", "submit");
+  loginButton.setAttribute("id", "submit");
   //Don't have an account? Signup now
   const loginDiv = document.createElement("div");
   const loginPara = document.createElement("p");
   const loginlink = document.createElement("a");
   loginlink.setAttribute("href", "http://127.0.0.1:5500/signUp.html");
 
-/*****APPEND****/
+  /*****APPEND****/
   root.append(main);
   main.append(logInSec);
 
@@ -132,7 +134,7 @@ function login() {
   divLoginCheck.append(divRememberMe, forget);
   divPassLogin.append(passLogin, iconEyeLogin);
   loginForm.append(emailLogin, divPassLogin, divLoginCheck, loginButton);
-  h2Login.append(spanLoginFirst,spanLoginSecond)
+  h2Login.append(spanLoginFirst, spanLoginSecond);
   logInSec.append(h2Login, loginForm, loginDiv);
   loginDiv.append(loginPara, loginlink);
 
@@ -165,17 +167,22 @@ function login() {
 
   //Heading
 
-  spanLoginFirst.textContent="Lo"
+  spanLoginFirst.textContent = "Lo";
   spanLoginSecond.textContent = "gin";
   h2Login.classList.add("font-extrabold", "text-xl");
-  spanLoginFirst.classList.add("border-b-4")
+  spanLoginFirst.classList.add("border-b-4");
 
-  
   //Form Login
   loginForm.classList.add("flex", "flex-col", "gap-8");
-  emailLogin.classList.add("border-b-2", "pb-2", "text-sm","outline-none","bg-inherit");
+  emailLogin.classList.add(
+    "border-b-2",
+    "pb-2",
+    "text-sm",
+    "outline-none",
+    "bg-inherit"
+  );
   divPassLogin.classList.add("border-b-2", "flex", "justify-between");
-  passLogin.classList.add("pb-2", "text-sm","outline-none","bg-inherit");
+  passLogin.classList.add("pb-2", "text-sm", "outline-none", "bg-inherit");
   iconEyeLogin.classList.add("fa-regular", "fa-eye", "cursor-pointer");
   divLoginCheck.classList.add("flex", "justify-between");
   divRememberMe.classList.add("flex", "gap-1");
@@ -184,48 +191,48 @@ function login() {
   forget.textContent = "Forgot password?";
   forget.classList.add("text-sm", "text-gray-500");
 
-// paragraph
+  // paragraph
   loginPara.textContent = "Don't have an account?";
   loginPara.classList.add("text-sm");
- 
+
   //para Link
   loginlink.textContent = "Signup now";
   loginlink.classList.add("text-sm", "text-gray-500");
-  
+
   // button
   loginButton.classList.add("btn", "bg-gray-300", "font-bold", "py-2", "px-28");
   loginButton.textContent = "Login Now";
- 
+
   //div para & link
   loginDiv.classList.add("flex", "gap-1.5", "justify-center");
-  
+
   // style
   logInSec.style.height = "44.5vh";
- 
-/**
- *
- *
- *
- * SHOW/HIDDEN
- *
- *
- *
- */
 
-const passInputLogin = document.getElementById("passsword");
-const iconLogin = document.querySelector("#icon-passs");
+  /**
+   *
+   *
+   *
+   * SHOW/HIDDEN
+   *
+   *
+   *
+   */
 
-iconLogin.addEventListener("click", function () {
-  if (passInputLogin.type === "password") {
-    passInputLogin.type = "text";
-    iconLogin.classList.remove("fa-eye");
-    iconLogin.classList.add("fa-eye-slash");
-  } else {
-    passInputLogin.type = "password";
-    iconLogin.classList.remove("fa-eye-slash");
-    iconLogin.classList.add("fa-eye");
-  }
-});
+  const passInputLogin = document.getElementById("passsword");
+  const iconLogin = document.querySelector("#icon-passs");
+
+  iconLogin.addEventListener("click", function () {
+    if (passInputLogin.type === "password") {
+      passInputLogin.type = "text";
+      iconLogin.classList.remove("fa-eye");
+      iconLogin.classList.add("fa-eye-slash");
+    } else {
+      passInputLogin.type = "password";
+      iconLogin.classList.remove("fa-eye-slash");
+      iconLogin.classList.add("fa-eye");
+    }
+  });
 }
 /**
  *
@@ -238,10 +245,36 @@ iconLogin.addEventListener("click", function () {
  */
 const initialize = () => {
   header();
-login()
+  login();
 };
 
 initialize();
 
+//variable
+const form = document.getElementById("form");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const submit = document.getElementById("submit");
 
+submit.addEventListener("click", validation);
 
+function validation() {
+  // validate email input
+  const userEmail = email.value;
+  const pattern = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
+  const regexResult = pattern.test(userEmail);
+  if (!regexResult) {
+    alert("Email entered is not valid");
+    return false;
+  }
+
+  // validate password input
+  if (password.value.length < 8) {
+    alert("Password must have at least 8 characters");
+    return false;
+  }
+
+  // success register
+  alert("Your registration was successful :)");
+  return true;
+}

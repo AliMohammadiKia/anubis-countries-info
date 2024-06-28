@@ -48,8 +48,8 @@ function header() {
   span.id = "text-dark-icon";
   span.textContent = "Dark Mode";
   button.append(span);
-   const buttonAElem = document.createElement("a");
-   buttonAElem.href="http://127.0.0.1:5500/login.html"
+  const buttonAElem = document.createElement("a");
+  buttonAElem.href = "http://127.0.0.1:5500/login.html";
   const userIconButton = document.createElement("button");
   userIconButton.className = "btn btn-ghost btn-circle ml-2";
   fourthDiv.append(buttonAElem);
@@ -64,11 +64,10 @@ function header() {
   secondI.className = "fa-regular fa-user text-lg";
   secondI.id = "light-user";
   indicatorDiv.append(secondI);
-  buttonAElem.append(userIconButton)
+  buttonAElem.append(userIconButton);
   root.append(Header);
   root.className = "px-2";
 }
-
 
 /**
  *
@@ -84,20 +83,24 @@ function signUp() {
   const signUpSec = document.createElement("section");
   //!!!!!!!!!!!!!!!!!!!!!Signup!!!!!!!!!!!!
   const signupForm = document.createElement("form");
+  signupForm.setAttribute("id", "form");
   const h2Signup = document.createElement("h2");
   const spanSignupFirst = document.createElement("span");
   const spanSignupSecond = document.createElement("span");
   //name
   const nameSignup = document.createElement("input");
+  nameSignup.setAttribute("id", "name");
   nameSignup.setAttribute("type", "text");
   nameSignup.setAttribute("placeholder", "Enter your name");
   //email
   const emailSignup = document.createElement("input");
+  emailSignup.setAttribute("id", "email");
   emailSignup.setAttribute("type", "email");
   emailSignup.setAttribute("placeholder", "Enter your email");
   //create a pass
   const creatPass = document.createElement("input");
   creatPass.setAttribute("type", "password");
+  creatPass.setAttribute("id", "creat-password");
   creatPass.setAttribute("placeholder", "Create a password");
   //pass
   const divPassSignup = document.createElement("div");
@@ -119,13 +122,14 @@ function signUp() {
   //button
   const signupButton = document.createElement("button");
   signupButton.setAttribute("type", "submit");
+  signupButton.setAttribute("id", "submit");
   //Already have an account? Login now
   const signupDiv = document.createElement("div");
   const signupPara = document.createElement("p");
   const signuplink = document.createElement("a");
   signuplink.setAttribute("href", "http://127.0.0.1:5500/login.html");
 
-/*****APPEND****/
+  /*****APPEND****/
   root.append(main);
   main.append(signUpSec);
 
@@ -232,16 +236,15 @@ function signUp() {
   // style
   signUpSec.style.height = "58vh";
 
- 
-/**
- *
- *
- *
- * SHOW/HIDDEN
- *
- *
- *
- */
+  /**
+   *
+   *
+   *
+   * SHOW/HIDDEN
+   *
+   *
+   *
+   */
 
   const passInputSignup = document.getElementById("password");
   const iconSignup = document.querySelector("#icon-pass");
@@ -274,3 +277,42 @@ const initialize = () => {
 };
 
 initialize();
+//variable
+const form = document.getElementById("form");
+const email = document.getElementById("email");
+const username = document.getElementById("name");
+const creatpassword = document.getElementById("creat-password");
+const password = document.getElementById("password");
+const submit = document.getElementById("submit");
+
+submit.addEventListener("click", validation);
+
+function validation() {
+  // validate name input
+  if (username.value.length < 6) {
+    alert("Name must have at least 6 characters");
+    return false;
+  }
+
+  // validate email input
+  const userEmail = email.value;
+  const pattern = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
+  const regexResult = pattern.test(userEmail);
+  if (!regexResult) {
+    alert("Email entered is not valid");
+    return false;
+  }
+  // validate password input
+  if (creatpassword.value.length < 8) {
+    alert("Password must have at least 8 characters");
+    return false;
+  }
+
+  if (creatpassword != password) {
+    alert("Entered passwords do not match");
+    return false;
+  }
+  // success register
+  alert("Your registration was successful :)");
+  return true;
+}
