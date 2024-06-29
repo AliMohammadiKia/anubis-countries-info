@@ -13,8 +13,9 @@ const setData = async () => {
     const jsonData = await fetch("./assets/data/data.json");
 
     const mainData = await jsonData.json();
+    console.log(mainData);
 
-    for (let i = 0; i <= mainData.length; i++) {
+    for (let i = 0; i < mainData.length; i++) {
       const data = mainData[i];
 
       createCards(data);
@@ -31,10 +32,14 @@ const createCards = (data) => {
 
   const figureEle = document.createElement("figure");
 
+  const aEle = document.createElement("a");
+  aEle.href = `details.html?country=${JSON.stringify(data)}`;
+
   const imgEle = document.createElement("img");
   imgEle.src = data.flags.png;
   imgEle.className = "object-fill h-40 w-96";
-  figureEle.append(imgEle);
+  aEle.append(imgEle);
+  figureEle.append(aEle);
 
   const cardBody = document.createElement("div");
   cardBody.className = "card-body";
@@ -45,8 +50,8 @@ const createCards = (data) => {
 
   const containerDetail = document.createElement("div");
   containerDetail.innerHTML = `<p><b>Population:</b> ${data.population}</p>
-                <p><b>Region:</b> ${data.region}</p>
-                <p><b>Capital:</b> ${data.capital}</p>`;
+                 <p><b>Region:</b> ${data.region}</p>
+                 <p><b>Capital:</b> ${data.capital}</p>`;
 
   cardBody.append(h2Ele, containerDetail);
   divEle.append(figureEle, cardBody);
