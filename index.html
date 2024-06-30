@@ -30,7 +30,56 @@
     />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div
+        class="container flex flex-col md:flex-row justify-between p-12 w-full"
+      >
+        <div class="mb-4 md:mb-0">
+          <label
+            class="input flex items-center w-full md:w-[200px] gap-5 shadow max-w-full"
+          >
+            <a href="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+                class="w-4 h-4 opacity-70"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <input
+              type="text"
+              id="search"
+              class="container ring-0"
+              placeholder="Search for a country"
+            />
+          </label>
+        </div>
+        <div>
+          <select
+            class="select select-ghost w-full shadow"
+            style="font-family: 'Nunito Sans', sans-serif"
+            onchange="changeFunc()"
+          >
+            <option disabled selected>Filter by Region</option>
+            <option id="All">All Countries</option>
+            <option id="Africa">Africa</option>
+            <option id="Americas">Americas</option>
+            <option id="Antarctic">Antarctic</option>
+            <option id="Antarctic Ocean">Antarctic Ocean</option>
+            <option id="Asia">Asia</option>
+            <option id="Europe">Europe</option>
+            <option id="Oceania">Oceania</option>
+            <option id="Polar">Polar</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/cards.js"></script>
