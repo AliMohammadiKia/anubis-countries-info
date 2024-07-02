@@ -1,5 +1,5 @@
-const button = document.getElementById("backbtn");
+const buttonOfDetailsPage = document.getElementById("backbtn");
 
-button.addEventListener("click", () => {
+buttonOfDetailsPage.addEventListener("click", () => {
   window.history.back();
 });
