@@ -64,8 +64,7 @@ function header() {
 
 function footer() {
   const Footer = document.createElement("footer");
-  Footer.className =
-    "py-2 shadow-lg border-t-2  bg-base-100 fixed inset-x-0 bottom-0";
+  Footer.className = "shadow-lg border-t border-gray-400 py-4";
   document.body.append(Footer);
   const container = document.createElement("div");
   container.className = "container mx-auto px-3";
