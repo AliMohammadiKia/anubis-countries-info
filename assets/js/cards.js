@@ -1,34 +1,43 @@
 const mainEle = document.querySelector("main");
 const sectionEle = document.createElement("section");
+const selectEle = document.querySelector('select');
+const searchCountry = document.querySelector('#search');
+const pEle = document.querySelector('#results')
+const theme = document.documentElement.getAttribute("data-theme");
 
-const divGrid = document.createElement("div");
+let divGrid = document.createElement("div");
 divGrid.className =
   "grid gap-14 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 px-16";
 
 sectionEle.append(divGrid);
 mainEle.append(sectionEle);
 
+let mainData;
+let continent;
+let numberOfResults;
+
+
 const setData = async () => {
   try {
     const jsonData = await fetch("./assets/data/data.json");
+    mainData = await jsonData.json();
+    continent = mainData;
+    setCards(mainData);
 
-    const mainData = await jsonData.json();
-    console.log(mainData);
 
-    for (let i = 0; i < mainData.length; i++) {
-      const data = mainData[i];
-
-      createCards(data);
-    }
   } catch (error) {
     console.log(error);
   }
 };
 setData();
 
+
 const createCards = (data) => {
   const divEle = document.createElement("div");
   divEle.className = "card mx-auto max-w-64 bg-base-100 shadow-md rounded";
+  if(theme == 'dark'){
+    divEle.className = "shadow-[0px_4px_10px_-1px_rgba(250,250,250,0.2)]"
+  }
 
   const figureEle = document.createElement("figure");
 
@@ -56,4 +65,59 @@ const createCards = (data) => {
   cardBody.append(h2Ele, containerDetail);
   divEle.append(figureEle, cardBody);
   divGrid.append(divEle);
+
 };
+
+
+const changeFunc = () =>{
+  searchCountry.value = '';
+  pEle.textContent = '';
+  const selectedCont = selectEle.options[selectEle.selectedIndex].id;
+
+  if(selectedCont == 'All') {
+    setCards(mainData);
+    return;
+  }
+  continent = mainData.filter((data) =>{
+    return data.region == selectedCont;
+  })
+
+  setCards(continent);
+}
+
+const setCards = continent =>{
+  divGrid.remove();
+  divGrid = document.createElement("div");
+  divGrid.className =
+  "grid gap-14 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 px-16";
+  sectionEle.append(divGrid);
+
+
+
+  for (let i = 0; i <= continent.length; i++) {
+    const data = continent[i];
+    createCards(data);
+  }
+}
+
+
+
+
+const searching = (e) =>{
+  const seek = e.target.value;   //iran
+  let newOrder = [];
+  for(const country of continent){
+    if(country.name.toUpperCase().includes(seek.toUpperCase())){
+      newOrder.push(country);
+    }
+  }
+
+  numberOfResults = newOrder.length;
+  pEle.textContent = `${numberOfResults} results found.`;
+  
+  setCards(newOrder);
+}
+selectEle.addEventListener("change", changeFunc)
+searchCountry.addEventListener("input", searching)
+
+
