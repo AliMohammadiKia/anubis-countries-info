@@ -28,7 +28,7 @@ function header() {
   aElem.className =
     "text-md font-semibold sm:text-xl sm:font-bold cursor-pointer";
   aElem.textContent = "Login";
-  aElem.id="message-login"
+  aElem.id = "message-login";
   thirdDiv.appendChild(aElem);
   const fourthDiv = document.createElement("div");
   fourthDiv.className = "flex-none";
@@ -84,7 +84,7 @@ function login() {
   const logInSec = document.createElement("section");
   //!!!!!!!!!!!!!!!!!!!!!Login!!!!!!!!!!!!
   const loginForm = document.createElement("form");
-  loginForm.setAttribute("id", "form");
+  loginForm.setAttribute("id", "form-login");
   const h2Login = document.createElement("h2");
   const spanLoginFirst = document.createElement("span");
   const spanLoginSecond = document.createElement("span");
@@ -251,31 +251,42 @@ const initialize = () => {
 
 initialize();
 
-//variable
-const form = document.getElementById("form");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const submit = document.getElementById("submit");
+import { Authentication } from "../../utils/auth.js";
+// import { LocalStorageData } from "../../utils/storage.js";
 
-submit.addEventListener("click", validation);
+const signInForm = document.getElementById("form");
+const messagePreview = document.getElementById("message-login");
 
-function validation() {
-  // validate email input
-  const userEmail = email.value;
-  const pattern = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
-  const regexResult = pattern.test(userEmail);
-  if (!regexResult) {
-    alert("Email entered is not valid");
-    return false;
+signInForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  messagePreview.textContent = "";
+
+  const emailInput = e.target.email;
+  const passwordInput = e.target.password;
+
+  try {
+    const user = new Authentication(
+      emailInput.value.trim(),
+      passwordInput.value.trim()
+    );
+
+    user.verifyData();
+
+    const res = await user.login();
+    if (res.statusCode === 404) {
+      messagePreview.textContent = res.message;
+      messagePreview.style.color = "crimson";
+    }
+
+    // if (res.statusCode === 200) {
+    //   LocalStorageData.setData(res.data);
+    //   window.location.replace("/pages/product.html");
+    // }
+  } catch (error) {
+    if (error.message === "passwordError") {
+      messagePreview.textContent = "email or password incorrect";
+      messagePreview.style.color = "crimson";
+    }
   }
-
-  // validate password input
-  if (password.value.length < 8) {
-    alert("Password must have at least 8 characters");
-    return false;
-  }
-
-  // success register
-  alert("Your registration was successful :)");
-  return true;
-}
+});

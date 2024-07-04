@@ -1,15 +1,7 @@
 //root
 const root = document.querySelector("#root");
 
-/**
- *
- *
- *
- * HEADER
- *
- *
- *
- */
+/** HEADER*/
 function header() {
   const Header = document.createElement("header");
   Header.className = "shadow-lg";
@@ -28,7 +20,7 @@ function header() {
   aElem.className =
     "text-md font-semibold sm:text-xl sm:font-bold cursor-pointer";
   aElem.textContent = "Sign Up";
-  aElem.id="message-signup"
+    aElem.id = "message-signup";
   thirdDiv.appendChild(aElem);
   const fourthDiv = document.createElement("div");
   fourthDiv.className = "flex-none";
@@ -70,21 +62,16 @@ function header() {
   root.className = "px-2";
 }
 
-/**
- *
- *
- *
- * Sign Up
- *
- *
- *
- */
+/** Sign Up*/
 function signUp() {
   const main = document.createElement("main");
   const signUpSec = document.createElement("section");
+
   //!!!!!!!!!!!!!!!!!!!!!Signup!!!!!!!!!!!!
   const signupForm = document.createElement("form");
-  signupForm.setAttribute("id", "form");
+  signupForm.setAttribute("action", "");
+  // signupForm.setAttribute("id", "form");
+  signupForm.setAttribute("id", "form-signup");
   const h2Signup = document.createElement("h2");
   const spanSignupFirst = document.createElement("span");
   const spanSignupSecond = document.createElement("span");
@@ -97,6 +84,7 @@ function signUp() {
   const emailSignup = document.createElement("input");
   emailSignup.setAttribute("id", "email");
   emailSignup.setAttribute("type", "email");
+  emailSignup.setAttribute("autocomplete", "off");
   emailSignup.setAttribute("placeholder", "Enter your email");
   //create a pass
   const creatPass = document.createElement("input");
@@ -104,14 +92,14 @@ function signUp() {
   creatPass.setAttribute("id", "creat-password");
   creatPass.setAttribute("placeholder", "Create a password");
   //pass
-  const divPassSignup = document.createElement("div");
-  const passSignup = document.createElement("input");
-  passSignup.setAttribute("type", "password");
-  passSignup.setAttribute("id", "password");
-  passSignup.setAttribute("placeholder", "Confirm a password");
+  // const divPassSignup = document.createElement("div");
+  // const passSignup = document.createElement("input");
+  // passSignup.setAttribute("type", "password");
+  // passSignup.setAttribute("id", "password");
+  // passSignup.setAttribute("placeholder", "create a password");
   //icon
-  const iconEyeSignup = document.createElement("i");
-  iconEyeSignup.setAttribute("id", "icon-pass");
+  // const iconEyeSignup = document.createElement("i");
+  // iconEyeSignup.setAttribute("id", "icon-pass");
   //checkbox
   const divAccept = document.createElement("div");
   const checkSignup = document.createElement("input");
@@ -136,12 +124,12 @@ function signUp() {
 
   //Signup
   divAccept.append(checkSignup, labelSignup);
-  divPassSignup.append(passSignup, iconEyeSignup);
+  // divPassSignup.append(passSignup, iconEyeSignup);
   signupForm.append(
-    nameSignup,
+    // nameSignup,
     emailSignup,
     creatPass,
-    divPassSignup,
+    // divPassSignup,
     divAccept,
     signupButton
   );
@@ -206,9 +194,9 @@ function signUp() {
     "outline-none",
     "bg-inherit"
   );
-  divPassSignup.classList.add("border-b-2", "flex", "justify-between");
-  iconEyeSignup.classList.add("fa-regular", "fa-eye", "cursor-pointer");
-  passSignup.classList.add("pb-2", "text-sm", "outline-none", "bg-inherit");
+  // divPassSignup.classList.add("border-b-2", "flex", "justify-between");
+  // iconEyeSignup.classList.add("fa-regular", "fa-eye", "cursor-pointer");
+  // passSignup.classList.add("pb-2", "text-sm", "outline-none", "bg-inherit");
   divAccept.classList.add("flex", "gap-1");
   labelSignup.textContent = "I accept all terms & conditions";
   labelSignup.classList.add("text-sm", "font-medium");
@@ -247,20 +235,20 @@ function signUp() {
    *
    */
 
-  const passInputSignup = document.getElementById("password");
-  const iconSignup = document.querySelector("#icon-pass");
+//   const passInputSignup = document.getElementById("password");
+//   const iconSignup = document.querySelector("#icon-pass");
 
-  iconSignup.addEventListener("click", function () {
-    if (passInputSignup.type === "password") {
-      passInputSignup.type = "text";
-      iconSignup.classList.remove("fa-eye");
-      iconSignup.classList.add("fa-eye-slash");
-    } else {
-      passInputSignup.type = "password";
-      iconSignup.classList.remove("fa-eye-slash");
-      iconSignup.classList.add("fa-eye");
-    }
-  });
+//   iconSignup.addEventListener("click", () => {
+//     if (passInputSignup.type === "password") {
+//       passInputSignup.type = "text";
+//       iconSignup.classList.remove("fa-eye");
+//       iconSignup.classList.add("fa-eye-slash");
+//     } else {
+//       passInputSignup.type = "password";
+//       iconSignup.classList.remove("fa-eye-slash");
+//       iconSignup.classList.add("fa-eye");
+//     }
+//   });
 }
 
 /**
@@ -278,42 +266,49 @@ const initialize = () => {
 };
 
 initialize();
-//variable
-const form = document.getElementById("form");
-const email = document.getElementById("email");
-const username = document.getElementById("name");
-const creatpassword = document.getElementById("creat-password");
-const password = document.getElementById("password");
-const submit = document.getElementById("submit");
+import { Authentication } from "../../utils/auth.js";
+import { LocalStorageData } from "../../utils/storage.js";
 
-submit.addEventListener("click", validation);
 
-function validation() {
-  // validate name input
-  if (username.value.length < 6) {
-    alert("Name must have at least 6 characters");
-    return false;
-  }
+const signUpForm = document.querySelector("#form-signup");
+const messagePreview = document.querySelector("#message-signup");
 
-  // validate email input
-  const userEmail = email.value;
-  const pattern = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
-  const regexResult = pattern.test(userEmail);
-  if (!regexResult) {
-    alert("Email entered is not valid");
-    return false;
-  }
-  // validate password input
-  if (creatpassword.value.length < 8) {
-    alert("Password must have at least 8 characters");
-    return false;
-  }
+signUpForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  console.log(e);
+  messagePreview.textContent = "";
 
-  if (creatpassword != password) {
-    alert("Entered passwords do not match");
-    return false;
+  const emailInput = e.target.email;
+  const passwordInput = e.target.password;
+
+  try {
+    const user = new Authentication(
+      emailInput.value.trim(),
+      passwordInput.value.trim()
+    );
+    user.verifyData();
+    const res = await user.signup();
+    console.log(res);
+    if (res.statusCode === 409) {
+      messagePreview.textContent = res.message;
+      messagePreview.style.color = "crimson";
+    }
+
+    // if (res.statusCode === 201) {
+    //   console.log(res);
+
+    //   LocalStorageData.setData(res.data);
+    //   window.location.replace("/pages/product.html");
+    // }
+  } catch (error) {
+    if (error.message === "passwordError") {
+      messagePreview.textContent =
+        "your password should be more than 5 characters";
+      messagePreview.style.color = "crimson";
+    }
+
+    if (error.message === "emailError") {
+      messagePreview.textContent = "emailError";
+    }
   }
-  // success register
-  alert("Your registration was successful :)");
-  return true;
-}
+});
