@@ -27,7 +27,8 @@ function header() {
   aElem.href = "./index.html";
   aElem.className =
     "text-md font-semibold sm:text-xl sm:font-bold cursor-pointer";
-  aElem.textContent = "Where in the world?";
+  aElem.textContent = "Login";
+  aElem.id="message-login"
   thirdDiv.appendChild(aElem);
   const fourthDiv = document.createElement("div");
   fourthDiv.className = "flex-none";
