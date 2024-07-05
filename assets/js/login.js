@@ -71,7 +71,7 @@ function loginForm() {
       loginPara.className = "text-sm";
       loginPara.textContent = "Don't have an account?";
       const loginlink = document.createElement("a");
-      loginlink.href = "../../pages/signUp.html";
+      loginlink.href = "http://127.0.0.1:5501/pages/signUp.html";
       loginlink.className = "text-sm text-gray-500";
       loginlink.textContent = "Signup now";
     
