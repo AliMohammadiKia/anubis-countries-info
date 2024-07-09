@@ -1,4 +1,72 @@
-const main = document.querySelector("main");
+const root = document.querySelector("#root");
+
+function header() {
+  const Header = document.createElement("header");
+  Header.className = "shadow-lg";
+  document.body.appendChild(Header);
+  const firstDiv = document.createElement("div");
+  firstDiv.className = "container mx-auto py-1.5";
+  Header.appendChild(firstDiv);
+  const secondDiv = document.createElement("div");
+  secondDiv.className = "navbar bg-base-100";
+  firstDiv.appendChild(secondDiv);
+  const thirdDiv = document.createElement("div");
+  thirdDiv.className = "flex-1";
+  secondDiv.appendChild(thirdDiv);
+  const aElem = document.createElement("a");
+  aElem.href = "./index.html";
+  aElem.className =
+    "text-md font-semibold sm:text-xl sm:font-bold cursor-pointer";
+  aElem.textContent = "Where in the world?";
+  thirdDiv.appendChild(aElem);
+  const fourthDiv = document.createElement("div");
+  fourthDiv.className = "flex-none";
+  secondDiv.append(fourthDiv);
+  const button = document.createElement("button");
+  button.className = "btn btn-sm btn-ghost";
+  button.setAttribute("onclick", "changeMode(event)");
+  fourthDiv.appendChild(button);
+  const darkIcon = document.createElement("i");
+  darkIcon.className = "fa-solid fa-moon hidden";
+  darkIcon.id = "dark-icon";
+  button.appendChild(darkIcon);
+  const lightIcon = document.createElement("i");
+  lightIcon.className = "fa-regular fa-moon";
+  lightIcon.id = "light-icon";
+  button.append(lightIcon);
+  const span = document.createElement("span");
+  span.id = "text-dark-icon";
+  span.textContent = "Dark Mode";
+  button.append(span);
+  const userIconButton = document.createElement("button");
+  userIconButton.className = "btn btn-ghost btn-circle ml-2";
+  fourthDiv.append(userIconButton);
+  const indicatorDiv = document.createElement("div");
+  indicatorDiv.className = "indicator";
+  userIconButton.append(indicatorDiv);
+  const firstI = document.createElement("i");
+  firstI.className = "fa-solid fa-user text-lg hidden";
+  firstI.id = "dark-user";
+  indicatorDiv.append(firstI);
+  const firstAElem = document.createElement("a");
+  firstAElem.href = "#";
+  firstI.append(firstAElem);
+  const secondI = document.createElement("i");
+  secondI.className = "fa-regular fa-user text-lg";
+  secondI.id = "light-user";
+  indicatorDiv.append(secondI);
+  const secondAElem = document.createElement("a");
+  secondAElem.href = "#";
+  secondI.append(secondAElem);
+  root.append(Header);
+  root.className = "px-2";
+}
+
+header();
+
+const main = document.createElement("main");
+main.className = "container mx-auto px-4 py-10";
+root.append(main);
 
 const firstSection = document.createElement("section");
 
@@ -77,6 +145,19 @@ if (countryData && countryData.borders) {
     const btnEle = document.createElement("button");
     btnEle.className = "btn btn-xs lg:btn-sm shadow-xl px-2";
     btnEle.innerText = border;
+
+    btnEle.addEventListener("click", async () => {
+      const response = await fetch("./assets/data/data.json");
+      const data = await response.json();
+      const borderCountryData = data.find(
+        (country) => country.alpha3Code === border
+      );
+      if (borderCountryData) {
+        window.location.href = `details.html?country=${JSON.stringify(
+          borderCountryData
+        )}`;
+      }
+    });
     btnParent.append(btnEle);
   });
 } else {
@@ -92,3 +173,40 @@ infoSection.append(h1Ele, divParent, parentBtnDiv);
 mainSection.append(imgEle, infoSection);
 
 main.append(firstSection, mainSection);
+
+// light and dark mood
+const darkIcon = document.querySelector("#dark-icon");
+const lightIcon = document.querySelector("#light-icon");
+
+const isDefaultDarkMode = window.matchMedia(
+  "(prefers-color-scheme: dark)"
+).matches;
+const getTheme =
+  localStorage.getItem("theme") ?? (isDefaultDarkMode ? "dark" : "light");
+
+// set default dark | light mode of user OS
+if (getTheme === "dark") {
+  document.documentElement.setAttribute("data-theme", "dark");
+  darkIcon.style.display = "block";
+  lightIcon.style.display = "none";
+} else {
+  document.documentElement.setAttribute("data-theme", "light");
+  darkIcon.style.display = "none";
+  lightIcon.style.display = "block";
+}
+
+// handle change dark | light mode
+function changeMode(event) {
+  const theme = document.documentElement.getAttribute("data-theme");
+  if (theme === "light") {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+    darkIcon.style.display = "block";
+    lightIcon.style.display = "none";
+  } else if (theme === "dark") {
+    localStorage.setItem("theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
+    darkIcon.style.display = "none";
+    lightIcon.style.display = "block";
+  }
+}
